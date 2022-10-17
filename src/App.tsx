@@ -13,7 +13,7 @@ const App = () => {
 
   const renderUser = useMemo(() => {
     return <Users users={users} />;
-  }, [users, loading]);
+  }, [users]);
 
   return (
     <div className="App">
