@@ -16,6 +16,7 @@ export const useFetch = <T>(fetchUrl: string): useFecthReturn<T> => {
   })
 
   useEffect(() => {
+    const controller = new AbortController();
     if (mounted.current) {
       setFetchReturn({ ...fetchReturn, loading: true });
       customFetch(fetchUrl).then(res => {
@@ -24,6 +25,7 @@ export const useFetch = <T>(fetchUrl: string): useFecthReturn<T> => {
       return;
     }
     return () => {
+      controller.abort();
       mounted.current = true;
     }
   }, []);
